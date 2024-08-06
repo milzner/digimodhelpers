@@ -627,13 +627,24 @@ parse_data <- function(dir = NULL, filepaths = NULL, cleanup = FALSE) {
     data.table::setnames(file_dt, old_names, new_names)
 
   }
+  if(files_df[["plat"]][[1]] %in% c("tt")) {
 
+    file_dt <- data.table::rbindlist( # bind as data.table
+      out <- RcppSimdJson::fload(f, # use super-fast RcppSimdJson parser
+                                 empty_array = data.frame(), # define what to do with empty observations
+                                 empty_object = data.frame()
+      ),
+      use.names = TRUE,
+      fill = TRUE,
+      idcol = "filepath")
+
+    if ("effect_ids" %in% names(file_dt)) {
+      file_dt[, effect_ids := NULL]
+    }
+  }
 
   return(file_dt)
 }
-
-
-
 
 
 
