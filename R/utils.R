@@ -28,7 +28,18 @@ utils::globalVariables(c(
   "diff_time_h",
   "difftime_category",
   "save_dir",
-  "item_id"
+  "item_id",
+  "distinct",
+  "video_id",
+  "create_time",
+  "file_id",
+  "etag",
+  "filename",
+  "time_window",
+  ".",
+  "download_software",
+  "replies",
+  "..keep_cols"
 ))
 
 
